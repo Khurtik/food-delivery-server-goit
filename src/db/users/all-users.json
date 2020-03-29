@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "username": "Ray",
+    "telephone": "068 888 88 86",
+    "password": "11111",
+    "email": "Ray@gmail.com"
+  },
+  {
+    "id": "2",
+    "username": "Bob",
+    "telephone": "068 888 88 87",
+    "password": "11111",
+    "email": "Bob@gmail.com"
+  },
+  {
+    "id": "SoFD_8w6D",
+    "username": "Dan",
+    "telephone": "068 888 88 88",
+    "password": "11111",
+    "email": "Dan@gmail.com"
+  }
+]
