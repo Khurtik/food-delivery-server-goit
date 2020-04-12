@@ -1,24 +1,35 @@
 const express = require("express");
-const router = express.Router();
-const getAllProducts = require("./products/getAllProducts");
-const getProductById = require("./products/getProductById");
-const signUp = require("./users/signUp");
-const getUserById = require("./users/getUserById");
+const mainRoute = require("./main/main");
+const getUser = require("./users/getUser");
+const createUser = require("./users/createUser");
+const updateUser = require("./users/updateUser");
 const createOrders = require("./orders/createOrders");
-const getProductsByIds = require("./products/getProductsByIds");
+const getOrders = require("./orders/getOrders");
+const createProduct = require("./products/createProduct");
+const getProduct = require("./products/getProduct");
+const updateProduct = require("./products/updateProduct");
 
-const query = (request, response, next) => {
-  if (!!request.query.ids) {
-    getProductsByIds(request, response);
-  } else {
-    next();
-  }
-};
+const apiRoutes = express.Router();
 
-router.get("/products", query, getAllProducts);
-router.get("/products/:id", getProductById);
-router.post("/users", signUp);
-router.get("/users/:id", getUserById);
-router.post("/orders/", createOrders);
+apiRoutes
+  .get("/", mainRoute)
 
-module.exports = router;
+  .get("/users/:id", getUser)
+
+  .post("/users", createUser)
+
+  .put("/users/:id", updateUser);
+
+apiRoutes
+  .post("/orders", createOrders)
+
+  .get("/orders/:id", getOrders);
+
+apiRoutes
+  .post("/products", createProduct)
+
+  .get("/products/:id", getProduct)
+
+  .put("/products/:id", updateProduct);
+
+module.exports = apiRoutes;
