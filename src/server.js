@@ -1,17 +1,25 @@
-const express = require("express");
-const app = express();
 const bodyParser = require("body-parser");
-const logger = require("morgan");
+const app = require("./modules/app");
+const morgan = require("morgan");
 const router = require("./routes/router");
+
+const errorHandler = (err, req, res, next) => {
+  console.error(err.stack);
+
+  res.json(404).send("No such page");
+};
 
 const startServer = port => {
   app
-    .use(logger("dev"))
+    .use(bodyParser.urlencoded({ extended: false }))
     .use(bodyParser.json())
-    .use(bodyParser.urlencoded({ extended: true }))
-    .use("/", router);
+    .use(morgan("dev"))
+    .use("/", router)
+    .use(errorHandler);
 
   app.listen(port);
+
+  console.log("Server was started at http://localhost:" + port);
 };
 
 module.exports = startServer;
