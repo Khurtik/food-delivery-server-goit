@@ -1,21 +1,17 @@
-const http = require("http");
-const url = require("url");
-
-const morgan = require("morgan");
+const express = require("express");
+const app = express();
+const bodyParser = require("body-parser");
+const logger = require("morgan");
 const router = require("./routes/router");
 
-const logger = morgan("combined");
-
 const startServer = port => {
-  const server = http.createServer((request, response) => {
-    const parsedUrl = url.parse(request.url);
+  app
+    .use(logger("dev"))
+    .use(bodyParser.json())
+    .use(bodyParser.urlencoded({ extended: true }))
+    .use("/", router);
 
-    const func = router[parsedUrl.pathname] || router.default;
-
-    logger(request, response, () => func(request, response));
-  });
-
-  server.listen(port);
+  app.listen(port);
 };
 
 module.exports = startServer;
