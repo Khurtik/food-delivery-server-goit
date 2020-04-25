@@ -9,7 +9,7 @@ const errorHandler = (err, req, res, next) => {
   res.json(404).send("No such page");
 };
 
-const startServer = port => {
+const startServer = (port) => {
   app
     .use(bodyParser.urlencoded({ extended: false }))
     .use(bodyParser.json())

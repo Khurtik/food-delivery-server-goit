@@ -3,9 +3,9 @@ const { Schema } = mongoose;
 const timestamp = require("../middleware/timestamp");
 
 const userSchema = new Schema({
-  username: String,
+  username: { type: String, required: true },
   telephone: String,
-  password: String,
+  password: { type: String, required: true },
   email: String,
   favoriteProducts: Array,
   viewedProducts: Array,
