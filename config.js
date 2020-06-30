@@ -3,8 +3,7 @@ const dbPassword = "khurtik1984";
 
 const config = {
   port: 3001,
-  dbUser,
-  dbPassword,
+  secret: "secret-key",
   databaseUrl: `mongodb+srv://${dbUser}:${dbPassword}@cluster0-ozhmd.mongodb.net/test`,
 };
 
